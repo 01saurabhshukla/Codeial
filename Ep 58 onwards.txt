@@ -1,3 +1,27 @@
 Ep 60 
 Npm and git 
 1.	Using package json “Start” setting it up
+
+ep 61
+routes definiton : it is entry point of all the request from browser it is different from api
+
+Routes:
+
+Definition: Routes in the context of a web application refer to the different paths or URLs that a user can visit. Routes determine how the application responds to specific HTTP requests.
+Purpose: Routes handle incoming requests and define the logic for processing those requests. They essentially map URLs to functions or handlers that generate responses.
+Example: In an Express.js application, you might define routes for different pages or features, such as a route for the homepage (/), a route for user profiles (/profile), and so on.
+
+API (Application Programming Interface):
+
+Definition: An API is a set of rules and protocols that allows one software application to interact with another. In web development, an API typically refers to the set of rules that govern how different parts of a web application communicate with each other.
+Purpose: APIs are used to enable communication between different software components. In the context of web development, an API often refers to the set of endpoints (URLs) and the associated request-response mechanisms that allow client applications to interact with a server.
+Example: In a RESTful API, different routes represent different resources, and HTTP methods (GET, POST, PUT, DELETE, etc.) are used to perform actions on those resources.
+
+
+  In summary, routes are a part of the overall structure of a web application and define how different URLs are handled, while an API encompasses a set of rules and endpoints that allow different software components to communicate, often using routes to represent different actions on resources. In practical terms, when people refer to building an API with Express, they often mean defining routes that follow a RESTful or other API design pattern.
+
+
+ep 62
+controller : it is a set of different actions.
+
+the important episode 
