@@ -1,0 +1,3 @@
+Ep 60 
+Npm and git 
+1.	Using package json “Start” setting it up
