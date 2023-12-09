@@ -28,3 +28,39 @@ the important episode
 
 ep63 
 mimp videos 
+
+
+EP Idont know:
+
+what actually happens when we click an like button in any application when it is built on MVC architecture with nodejs backend and mongo db and express and ejs ?
+In an MVC (Model-View-Controller) architecture with a Node.js backend, MongoDB, and Express framework, the process of handling a "like" button click typically involves several steps. I'll provide a general overview of how this might work, but keep in mind that the specific implementation details can vary based on the application's design.
+
+1.User Interaction (View):
+
+The user clicks the "like" button on the frontend, which triggers a client-side event.
+2.Client-Side Handling (Controller):
+
+JavaScript code in the frontend (controlled by a controller) captures the "like" button click event.
+This code may then send an asynchronous request (e.g., using AJAX or Fetch API) to the server to notify it about the "like" action.
+3. Routing (Controller):
+
+In the Express.js backend, there are defined routes that handle different types of requests. For a "like" action, there might be a route like /api/posts/like that the client-side code sends a request to.
+4.Controller (Backend):
+
+The Express.js server receives the incoming request and delegates it to the appropriate controller function.
+The controller function performs the necessary business logic, which may include updating the MongoDB database to record the "like" for the specific post or content.
+5.Model (Backend):
+
+The model represents the data structure of the application. In this case, it involves interacting with the MongoDB database to update the relevant data. The MongoDB database might have a collection for posts, and each post document may have a field for the number of likes.
+6.Database Interaction (Model):
+
+The controller communicates with the model to update the database. It may increment the like count for the specific post by updating the corresponding document in the MongoDB collection.
+7. Response (Controller):
+
+The controller then sends a response back to the client, confirming the success of the "like" action or providing any relevant data.
+8. Client-Side Update (View):
+
+Upon receiving a successful response from the server, the client-side code may update the UI to reflect the new like count without requiring a full page reload. This is often done dynamically using JavaScript to manipulate the DOM.
+
+
+This process illustrates a simplified flow, and the actual implementation can vary based on the application's requirements and design choices. Additionally, security considerations, such as user authentication and authorization, should be implemented to ensure that only authorized users can perform actions like liking a post.

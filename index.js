@@ -1,12 +1,25 @@
 const express = require("express");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
+const cookieParser = require('cookie-parser');
 const port = 8000;
 const db = require('./config/mongoose');
 
+
+
+
 app.use(express.static("./assets"));
 
+app.use(express.urlencoded());
+
+
+// Here i have removed express.cookieParser()
+app.use(cookieParser());
+
 app.use(expressLayouts);
+
+
+
 // extract style and script from sub pages into layout
 app.set("layout extractStyles",true);
 app.set("layout extractScripts",true);
@@ -23,6 +36,5 @@ app.listen(port, function (err) {
   if (err) {
     console.log(`Error: ${err}`);
   }
-
   console.log(`Server is Running at Port : ${port}`);
 });
