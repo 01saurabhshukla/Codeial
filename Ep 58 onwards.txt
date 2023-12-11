@@ -64,3 +64,11 @@ Upon receiving a successful response from the server, the client-side code may u
 
 
 This process illustrates a simplified flow, and the actual implementation can vary based on the application's requirements and design choices. Additionally, security considerations, such as user authentication and authorization, should be implemented to ensure that only authorized users can perform actions like liking a post.
+
+
+ep 89:
+Session Cookies : Its is encrypted and it is different as well
+Session cookies, also known as session-based cookies or temporary cookies, are a type of cookie that is stored on a user's device only for the duration of their browsing session. Unlike persistent cookies, which have a longer lifespan and can persist on the user's device for a specified period, session cookies are temporary and are deleted when the user closes their web browser.
+
+Serailze 
+Deserialize
