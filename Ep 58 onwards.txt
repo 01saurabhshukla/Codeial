@@ -72,3 +72,22 @@ Session cookies, also known as session-based cookies or temporary cookies, are a
 
 Serailze 
 Deserialize
+
+ep 90
+what is passport.js and what is its need  for authentication
+
+Passport.js is a popular authentication middleware for Node.js applications. It is designed to simplify the process of implementing authentication in web applications by providing a flexible and modular framework. Passport.js is not a standalone authentication strategy; instead, it acts as a middleware that supports various authentication mechanisms, known as "strategies."
+
+The need for Passport.js in authentication arises from the following reasons:
+
+Modularity and Extensibility: Passport.js follows a modular design, allowing developers to choose and use authentication strategies based on their specific needs. Strategies are separate modules that handle authentication for specific mechanisms (e.g., local, OAuth, OpenID, etc.). This modular approach makes it easy to extend or swap authentication methods without having to rewrite the entire authentication logic.
+
+Middleware Integration: Passport.js integrates seamlessly with Express, a popular web application framework for Node.js. By using Passport.js as middleware, developers can incorporate authentication into their routes and easily control access to different parts of their application.
+
+Support for Multiple Authentication Strategies: Passport.js supports a wide range of authentication strategies, including local (username/password), OAuth (for services like Google, Facebook, Twitter), OpenID, and more. This flexibility allows developers to implement authentication based on their application's requirements and user preferences.
+
+Session Management: Passport.js helps manage user sessions, making it easier to implement features like persistent login sessions. It abstracts the underlying details of session management, providing a consistent interface for developers.
+
+Security Best Practices: Passport.js is designed with security best practices in mind. It helps prevent common authentication-related vulnerabilities by providing mechanisms like input validation, password hashing, and other security measures.
+
+Here's a simple example of using Passport.js with the local strategy for username/password authentication in an Express application:
