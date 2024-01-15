@@ -6,15 +6,19 @@ const port = 8000;
 const db = require('./config/mongoose');
 
 // used for session cookies
+const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo');
+
 // const sassMiddleware = require('node-sass-middleware');
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
 
 
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 
 // Here i have removed express.cookieParser()
 app.use(cookieParser());
@@ -33,9 +37,13 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 
 
+
+
+
 // order matters
 // mongostore is used to store session cookie in db
-app.use(session({
+app.use(
+  session({
   name: 'codeial',
 
   // TO DO Change before deploying on production
@@ -51,8 +59,6 @@ app.use(session({
   },
   store: MongoStore.create(
     {
-    // mongooseConnection: db,.
-    // dbName: db,
     mongoUrl: 'mongodb://0.0.0.0/codeial_development',
     autoRemove: 'disabled'
     },
@@ -61,7 +67,7 @@ app.use(session({
     }
 
     
-  ) 
+  )
 }));
 
 
@@ -71,6 +77,8 @@ app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
 
+app.use(flash());
+app.use(customMware.setFlash);
 
 // This one should load before server starts
 // using express routers

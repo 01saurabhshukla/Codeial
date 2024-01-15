@@ -1,1 +1,3 @@
 dummy
+
+flash mesages  are stroed in session cookies 
