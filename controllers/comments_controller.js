@@ -10,12 +10,16 @@ module.exports.create = function(req, res){
                 user: req.user._id
             }, function(err, comment){
 
-                if(err){console.log('Error while Creating a comment'); return;}
+                if(err){
+                req.flash('error', err);
+                return res.redirect("back");
+                }
 
 
                 post.comments.push(comment);
                 post.save();
 
+                req.flash('success','comment succesfull');
                 return res.redirect('back');
             });
         }
@@ -31,10 +35,12 @@ module.exports.destroy = function(req, res){
             comment.remove();
 
             Post.findByIdAndUpdate(postId, { $pull: {comments: req.params.id}}, function(err, post){
+                req.flash('success',' comment deleted Succesfully');
                 return res.redirect('back');
             })
         }
         else{
+            req.flash('error',err);
             return res.redirect('back');
         }
     })
