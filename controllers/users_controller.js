@@ -1,4 +1,6 @@
 const User = require("../models/user");
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = function (req, res) {
   User.findById(req.params.id, function(err, user){
@@ -10,12 +12,52 @@ module.exports.profile = function (req, res) {
 };
 
 
-module.exports.update = function(req, res){
+module.exports.update = async function(req, res){
   // anyone can inspect page and can check the user id and can also change anyone user id 
   if(req.user.id == req.params.id){
-    User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+
+    try {
+      
+      let user = await User.findById(req.params.id);
+      // now we will not be able to access data directly from req.params.id because 
+      // it is now a multipart form and our body parser won't be able to parse it
+      User.upLoadedAvatar(req, res, function(err){
+        if(err) {console.log('**********MUlTER ERROR: ' , err)}
+
+        user.name = req.body.name;
+        user.email = req.body.email;
+
+        if(req.file){
+
+          if(user.avatar){
+            // fs.unlinkSync(path.join(__dirname, '..' , user.avatar));
+
+            const oldAvatarPath = path.join(__dirname, '..', user.avatar);
+            
+            if (fs.existsSync(oldAvatarPath)) {
+                fs.unlinkSync(oldAvatarPath);
+            } else {
+                console.log('Old avatar file does not exist:', oldAvatarPath);
+            }
+
+
+          }
+          // this is like saving avatar path in User schema base
+          user.avatar = User.avatarPath + '/' + req.file.filename;
+        }
+
+        user.save();
+        return res.redirect('back');
+
+      })
+
+
+    } catch (err) {
+
+      req.flash('error',err);
       return res.redirect('back');
-    });
+      
+    }
   }
   else{
     return res.status(401).send('Unauthorized');
